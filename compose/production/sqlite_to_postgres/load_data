@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+echo "Move data from sqlite to postgres..."
+/usr/local/bin/python load_data.py --do_if_empty True
+echo "Moved data from sqlite to postgres"

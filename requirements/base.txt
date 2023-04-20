@@ -1,0 +1,2 @@
+-r ../movies_admin/requirements/base.txt
+-r ../sqlite_to_postgres/requirements/base.txt
