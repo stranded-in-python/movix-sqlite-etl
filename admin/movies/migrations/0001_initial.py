@@ -34,12 +34,9 @@ class Migration(migrations.Migration):
                 ("title", models.CharField(max_length=255, verbose_name="Title")),
                 (
                     "description",
-                    models.TextField(blank=True, verbose_name="Description"),
+                    models.TextField(blank=True, null=True, verbose_name="Description"),
                 ),
-                (
-                    "creation_date",
-                    models.DateField(verbose_name="Creation date"),
-                ),
+                ("creation_date", models.DateField(verbose_name="Creation date")),
                 (
                     "rating",
                     models.FloatField(
@@ -82,7 +79,7 @@ class Migration(migrations.Migration):
                 ("name", models.CharField(max_length=255, verbose_name="name")),
                 (
                     "description",
-                    models.TextField(blank=True, verbose_name="description"),
+                    models.TextField(blank=True, null=True, verbose_name="description"),
                 ),
             ],
             options={
@@ -166,7 +163,7 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name="FilmWorkGenre",
+            name="GenreFilmWork",
             fields=[
                 (
                     "id",
@@ -193,9 +190,9 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
-                "verbose_name": "FilmWorkGenre",
-                "verbose_name_plural": "FilmWorkGenres",
-                "db_table": 'content"."film_work_genre',
+                "verbose_name": "GenreFilmWork",
+                "verbose_name_plural": "GenreFilmWork",
+                "db_table": 'content"."genre_film_work',
                 "unique_together": {("genre_id", "film_work_id")},
             },
         ),
@@ -203,7 +200,7 @@ class Migration(migrations.Migration):
             model_name="filmwork",
             name="genres",
             field=models.ManyToManyField(
-                through="movies.FilmWorkGenre", to="movies.Genre"
+                through="movies.GenreFilmWork", to="movies.Genre"
             ),
         ),
     ]

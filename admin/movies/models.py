@@ -26,7 +26,7 @@ class TimeStampedMixin(models.Model):
 
 class Genre(UUIDMixin, TimeStampedMixin):
     name = models.CharField(_("name"), max_length=255)
-    description = models.TextField(_("description"), blank=True)
+    description = models.TextField(_("description"), blank=True, null=True)
 
     def __str__(self):
         return str(self.name)
@@ -51,7 +51,7 @@ class Person(UUIDMixin, TimeStampedMixin):
 
 class FilmWork(UUIDMixin, TimeStampedMixin):
     title = models.CharField(_("Title"), max_length=255)
-    description = models.TextField(_("Description"), blank=True)
+    description = models.TextField(_("Description"), blank=True, null=True)
     creation_date = models.DateField(_("Creation date"))
     rating = models.FloatField(
         _("Film rating"), validators=[MinValueValidator(0), MaxValueValidator(100)]
@@ -59,7 +59,7 @@ class FilmWork(UUIDMixin, TimeStampedMixin):
     type = models.CharField(
         _("Film type"), max_length=255, choices=FilmWorkTypes.choices
     )
-    genres = models.ManyToManyField(Genre, through="FilmWorkGenre")
+    genres = models.ManyToManyField(Genre, through="GenreFilmWork")
 
     def __str__(self):
         return f"{self.title} ({self.creation_date:%Y})"
@@ -89,13 +89,13 @@ class PersonFilmWork(UUIDMixin):
         unique_together = ["person_id", "film_work_id", "role"]
 
 
-class FilmWorkGenre(UUIDMixin):
+class GenreFilmWork(UUIDMixin):
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     film_work = models.ForeignKey(FilmWork, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        db_table = 'content"."film_work_genre'
-        verbose_name = _("FilmWorkGenre")
-        verbose_name_plural = _("FilmWorkGenres")
+        db_table = 'content"."genre_film_work'
+        verbose_name = _("GenreFilmWork")
+        verbose_name_plural = _("GenreFilmWorks")
         unique_together = ["genre_id", "film_work_id"]

@@ -103,11 +103,11 @@ msgid "PersonFilmWorks"
 msgstr "Персоны в кино"
 
 #: movies/models.py:89
-msgid "FilmWorkGenre"
+msgid "GenreFilmWork"
 msgstr "Киножанр"
 
 #: movies/models.py:90
-msgid "FilmWorkGenres"
+msgid "GenreFilmWorks"
 msgstr "Киножанры"
 
 #~ msgid "Messages"

@@ -42,7 +42,6 @@ class Genre(Item):
     def __post_init__(self):
         self.created = unify_datetime(self.created)
         self.modified = unify_datetime(self.modified)
-        self.description = "" if self.description is None else self.description
 
 
 @dataclass(slots=True)
@@ -82,7 +81,6 @@ class FilmWork(Item):
     def __post_init__(self):
         self.created = unify_datetime(self.created)
         self.modified = unify_datetime(self.modified)
-        self.description = "" if self.description is None else self.description
         if not self.creation_date:
             self.creation_date = self.created.date()
         if not self.rating:

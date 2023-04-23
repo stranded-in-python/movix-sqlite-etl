@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import FilmWork, FilmWorkGenre, Genre, Person, PersonFilmWork
+from .models import FilmWork, Genre, GenreFilmWork, Person, PersonFilmWork
 
 
 class RoleInline(admin.TabularInline):
@@ -8,7 +8,7 @@ class RoleInline(admin.TabularInline):
 
 
 class GenreInline(admin.TabularInline):
-    model = FilmWorkGenre
+    model = GenreFilmWork
 
 
 @admin.register(FilmWork)

@@ -17,7 +17,7 @@ from sqlite_to_postgres.savers import PostgresSaver
 from sqlite_to_postgres.utils import get_mapping
 
 PACK_SIZE = 1000
-PG_NAME_MAPPING = {"genre_film_work": "film_work_genre"}
+PG_NAME_MAPPING = {"genre_film_work": "genre_film_work"}
 PG_SCHEMA = "content"
 
 SQLITE_NAME_MAPPING = {"created": "created_at", "modified": "updated_at"}
