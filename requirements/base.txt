@@ -1,2 +1,4 @@
--r ../movies_admin/requirements/base.txt
--r ../sqlite_to_postgres/requirements/base.txt
+psycopg2==2.9.5
+python-dateutil==2.8.2
+requests==2.25.1
+fire==0.5.0
